@@ -1,29 +1,5 @@
-# DataViz Sport
+# DataViz Sport - Hackathon 2019 - ESGI
 
-## Project setup
-```
-npm install
-```
+Groupe 26: AUBLET / DEMAY / GIBBINGS / KOK / RAZONABLE
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Template from : [Tim Creative - Argon Design](https://www.creative-tim.com/product/vue-argon-design-system)
