@@ -1,4 +1,4 @@
-# dataviz-sport
+# DataViz Sport
 
 ## Project setup
 ```
