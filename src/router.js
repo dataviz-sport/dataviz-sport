@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import AppHeader from "./layout/AppHeader";
 import AppFooter from "./layout/AppFooter";
-import Components from "./views/Components.vue";
+import Map from "./views/Map.vue";
 import Landing from "./views/Landing.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
@@ -15,11 +15,9 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "components",
+      name: "map",
       components: {
-        header: AppHeader,
-        default: Components,
-        footer: AppFooter
+        default: Map,
       }
     },
     {
