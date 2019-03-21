@@ -1,6 +1,7 @@
 <template>
   <footer class="footer has-cards">
     <div class="container">
+      <div class="text-center text-light">____________</div>
       <div class="row align-items-center justify-content-md-between">
         <div class="col-md-6">
           <ul class="nav nav-footer justify-content-start">
