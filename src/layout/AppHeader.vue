@@ -38,9 +38,6 @@
                     </li>
                 </ul>
             </ul>
-            <div class="col-md-6">
-                <base-input class="form-search-bar" placeholder="Tapez un article" addon-left-icon="ni ni-zoom-split-in"></base-input>
-            </div>
         </base-nav>
     </header>
 </template>
