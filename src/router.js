@@ -21,6 +21,15 @@ export default new Router({
       }
     },
     {
+      path: "/sports/:sport",
+      name: "sport",
+      components: {
+        header: AppHeader,
+        default: Map,
+        footer: AppFooter
+      }
+    },
+    {
       path: "/articles",
       name: "articles",
       components: {

@@ -1,11 +1,21 @@
 <template>
   <div class="root">
-    <div class="map animated slideInRight" id="mapDiv"></div>
+    <div class="map animated fadeIn" id="mapDiv"></div>
     <div class="slider">
       <div class="slider-container">
-        <slider :country="country" :sports="sports"></slider>
+        <slider :country="country" :sports="sports" @interface="handleBack"></slider>
       </div>
     </div>
+
+     <div class="label-trends mt-2">
+        <h1 class="display-2 text-black">ARTICLES POUR {{ selectedSport }}</h1>
+    </div>
+
+    <div v-for="article in shownArticles">
+        {{ article }}
+    </div>
+    <br>
+    <br>
   </div>
 </template>
 
@@ -23,8 +33,14 @@ export default {
   data() {
     return {
       country: "",
+      countryId: "",
       datas: {},
-      sports: {}
+      sports: {},
+      selectedSport: "",
+      shownArticles: {},
+      articlesFoot: {},
+      articlesBasket: {},
+      articlesTennis: {},
     };
   },
   mounted() {
@@ -35,19 +51,19 @@ export default {
     axios
       .all([
         axios.request({
-          url: "http://10.0.4.18:4000/trends/keyword/football",
+          url: "http://192.168.0.30:4000/trends/keyword/football",
           method: "get",
           timeout: 200000,
           headers: { "Content-Type": "application/json" }
         }),
         axios.request({
-          url: "http://10.0.4.18:4000/trends/keyword/tennis",
+          url: "http://192.168.0.30:4000/trends/keyword/basketball",
           method: "get",
           timeout: 200000,
           headers: { "Content-Type": "application/json" }
         }),
         axios.request({
-          url: "http://10.0.4.18:4000/trends/keyword/basketball",
+          url: "http://192.168.0.30:4000/trends/keyword/tennis",
           method: "get",
           timeout: 200000,
           headers: { "Content-Type": "application/json" }
@@ -59,16 +75,17 @@ export default {
             var obj = {};
             obj["football"] = results_foot.data[objectKey].metadata.count;
             vue.datas[objectKey] = obj;
+            vue.articlesFoot[objectKey] = results_foot.data[objectKey].articles;
           });
 
           Object.keys(results_basket.data).map(function(objectKey, index) {
-            vue.datas[objectKey].basketball =
-              results_tennis.data[objectKey].metadata.count;
+            vue.datas[objectKey].basketball = results_basket.data[objectKey].metadata.count;
+              vue.articlesBasket[objectKey] = results_basket.data[objectKey].articles;
           });
 
           Object.keys(results_tennis.data).map(function(objectKey, index) {
-            vue.datas[objectKey].tennis =
-              results_tennis.data[objectKey].metadata.count;
+            vue.datas[objectKey].tennis = results_tennis.data[objectKey].metadata.count;
+            vue.articlesTennis[objectKey] = results_tennis.data[objectKey].articles;
           });
         })
       );
@@ -92,7 +109,6 @@ export default {
         {
           event: "clickMapObject",
           method: function(event) {
-              console.log(event)
             switch (event.mapObject.id) {
               case "FR":
                 var sortable = [];
@@ -185,12 +201,30 @@ export default {
             }
 
             vue.country = event.mapObject.title;
+            vue.countryId = event.mapObject.id;
           }
         }
       ]
     });
   },
-
+  methods: {
+      handleBack (event) {
+        this.selectedSport = event.toUpperCase()
+        switch (event) {
+            case "football":
+            this.shownArticles = this.articlesFoot[this.countryId.toLowerCase()]
+            break;
+            case "basketball":
+            this.shownArticles = this.articlesBasket[this.countryId.toLowerCase()]
+               console.log(this.shownArticles)
+            break;
+            case "tennis":
+            this.shownArticles = this.articlesTennis[this.countryId.toLowerCase()]
+               console.log(this.shownArticles)
+            break;
+        }
+      }
+  },
   beforeDestroy() {
     if (this.map) {
       this.map.dispose();
@@ -228,5 +262,12 @@ body {
 .slided {
   height: 100%;
   width: 30%;
+}
+
+.label-trends {
+  text-align: center;
+  background-color: white;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 </style>
