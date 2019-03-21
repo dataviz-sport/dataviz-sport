@@ -160,6 +160,9 @@ export default {
 
                 vue.sports = sortable
                 break;
+                default: 
+                vue.sports = []
+                break;
             }
 
             var slider = document.getElementsByClassName("slider")[0];
@@ -212,7 +215,7 @@ body {
 
 .slider {
     position: absolute;
-    top: 95px;
+    top: 88px;
     right: 0;
     width: 0px;
     height: 100%;
