@@ -3,7 +3,7 @@ import Router from "vue-router";
 import AppHeader from "./layout/AppHeader";
 import AppFooter from "./layout/AppFooter";
 import Map from "./views/Map.vue";
-import Landing from "./views/Landing.vue";
+import Articles from "./views/Articles.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
@@ -21,12 +21,10 @@ export default new Router({
       }
     },
     {
-      path: "/landing",
-      name: "landing",
+      path: "/articles",
+      name: "articles",
       components: {
-        header: AppHeader,
-        default: Landing,
-        footer: AppFooter
+        default: Articles,
       }
     },
     {
