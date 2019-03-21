@@ -41,6 +41,14 @@
 
 .text-white { color: $white !important; }
 
+.label-trends{
+  text-align: center;
+  background-color: #404A59;
+  //height: 150px;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
 @each $color, $value in $theme-colors {
   @include text-emphasis-variant(".text-#{$color}", $value);
 }
