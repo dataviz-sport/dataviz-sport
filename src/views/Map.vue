@@ -97,7 +97,7 @@ body {
 
 .slider {
     position: absolute;
-    top: 0;
+    top: 95px;
     right: 0;
     width: 0px;
     height: 100%;
