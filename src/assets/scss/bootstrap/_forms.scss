@@ -173,7 +173,7 @@ textarea.form-control {
 // horizontal forms, use the predefined grid classes.
 
 .form-group {
-  margin-bottom: $form-group-margin-bottom;
+  //margin-bottom: $form-group-margin-bottom;
 }
 
 .form-text {
@@ -240,6 +240,8 @@ textarea.form-control {
 }
 
 
+
+
 // Form validation
 //
 // Provide feedback to users when form field values are valid or invalid. Works
@@ -287,6 +289,10 @@ textarea.form-control {
       flex-flow: row wrap;
       align-items: center;
       margin-bottom: 0;
+    }
+
+    .form-search-bar {
+      margin-bottom: -1rem !important;
     }
 
     // Allow folks to *not* use `.form-group`

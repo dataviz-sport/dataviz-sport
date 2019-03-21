@@ -1,12 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import AppHeader from "./layout/AppHeader";
-import AppFooter from "./layout/AppFooter";
+import AppHeader from "./layout/AppHeader.vue";
+import AppFooter from "./layout/AppFooter.vue";
 import Map from "./views/Map.vue";
-import Landing from "./views/Landing.vue";
-import Login from "./views/Login.vue";
-import Register from "./views/Register.vue";
-import Profile from "./views/Profile.vue";
+import Articles from "./views/Articles.vue";
+import Trends from "./views/Trends.vue";
 
 Vue.use(Router);
 
@@ -17,42 +15,26 @@ export default new Router({
       path: "/",
       name: "map",
       components: {
+        header: AppHeader,
         default: Map,
-      }
-    },
-    {
-      path: "/landing",
-      name: "landing",
-      components: {
-        header: AppHeader,
-        default: Landing,
         footer: AppFooter
       }
     },
     {
-      path: "/login",
-      name: "login",
+      path: "/articles",
+      name: "articles",
       components: {
         header: AppHeader,
-        default: Login,
+        default: Articles,
         footer: AppFooter
       }
     },
     {
-      path: "/register",
-      name: "register",
+      path: "/trends",
+      name: "trends",
       components: {
         header: AppHeader,
-        default: Register,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/profile",
-      name: "profile",
-      components: {
-        header: AppHeader,
-        default: Profile,
+        default: Trends,
         footer: AppFooter
       }
     }

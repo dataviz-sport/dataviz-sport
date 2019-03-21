@@ -22,6 +22,9 @@ License - nucleoapp.com/license/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.ni-cyan {
+    color: #039BBD;
+}
 /*------------------------
   change icon size
 -------------------------*/
