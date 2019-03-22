@@ -86,7 +86,7 @@ export default {
       axios
         .all([
           axios.request({
-            url: `http://192.168.0.30:4000/search/keyword/${
+            url: `http://localhost:4000/search/keyword/${
               this.search_text
             }/edition/${this.search_country}`,
             method: "get",

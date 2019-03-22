@@ -6,31 +6,31 @@
         <slider :country="country" :sports="sports" @interface="handleBack"></slider>
       </div>
     </div>
-<div class="articles d-none">
-     <div class="label-trends mt-2">
+    <div class="articles d-none">
+      <div class="label-trends mt-2">
         <h1 class="display-2 text-black">ARTICLES POUR {{ selectedSport }}</h1>
-    </div>
+      </div>
 
- <table class="table col-lg-10 offset-1">
-      <thead>
-        <tr>
-          <th>Source</th>
-          <th>Titre</th>
-          <th>Publication</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="article in shownArticles">
-          <td>{{ article.source.domain }}</td>
-          <td>
-            <a v-bind:href="article.url" target="_blank">{{ article.name }}</a>
-          </td>
-          <td>{{ article.date_first_seen.substr(0, 10) }}</td>
-          <td>{{ article.article_score }}</td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="table col-lg-10 offset-1">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Titre</th>
+            <th>Publication</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="article in shownArticles">
+            <td>{{ article.source.domain }}</td>
+            <td>
+              <a v-bind:href="article.url" target="_blank">{{ article.name }}</a>
+            </td>
+            <td>{{ article.date_first_seen.substr(0, 10) }}</td>
+            <td>{{ article.article_score }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -58,7 +58,7 @@ export default {
       shownArticles: {},
       articlesFoot: {},
       articlesBasket: {},
-      articlesTennis: {},
+      articlesTennis: {}
     };
   },
   mounted() {
@@ -69,19 +69,19 @@ export default {
     axios
       .all([
         axios.request({
-          url: "http://192.168.0.30:4000/trends/keyword/football",
+          url: "http://localhost:4000/trends/keyword/football",
           method: "get",
           timeout: 200000,
           headers: { "Content-Type": "application/json" }
         }),
         axios.request({
-          url: "http://192.168.0.30:4000/trends/keyword/basketball",
+          url: "http://localhost:4000/trends/keyword/basketball",
           method: "get",
           timeout: 200000,
           headers: { "Content-Type": "application/json" }
         }),
         axios.request({
-          url: "http://192.168.0.30:4000/trends/keyword/tennis",
+          url: "http://localhost:4000/trends/keyword/tennis",
           method: "get",
           timeout: 200000,
           headers: { "Content-Type": "application/json" }
@@ -97,13 +97,17 @@ export default {
           });
 
           Object.keys(results_basket.data).map(function(objectKey, index) {
-            vue.datas[objectKey].basketball = results_basket.data[objectKey].metadata.count;
-              vue.articlesBasket[objectKey] = results_basket.data[objectKey].articles;
+            vue.datas[objectKey].basketball =
+              results_basket.data[objectKey].metadata.count;
+            vue.articlesBasket[objectKey] =
+              results_basket.data[objectKey].articles;
           });
 
           Object.keys(results_tennis.data).map(function(objectKey, index) {
-            vue.datas[objectKey].tennis = results_tennis.data[objectKey].metadata.count;
-            vue.articlesTennis[objectKey] = results_tennis.data[objectKey].articles;
+            vue.datas[objectKey].tennis =
+              results_tennis.data[objectKey].metadata.count;
+            vue.articlesTennis[objectKey] =
+              results_tennis.data[objectKey].articles;
           });
         })
       );
@@ -137,7 +141,7 @@ export default {
                   return b[1] - a[1];
                 });
 
-                vue.sports = sortable
+                vue.sports = sortable;
                 break;
               case "US":
                 var sortable = [];
@@ -148,9 +152,9 @@ export default {
                   return b[1] - a[1];
                 });
 
-                vue.sports = sortable
+                vue.sports = sortable;
                 break;
-            case "ES":
+              case "ES":
                 var sortable = [];
                 for (var data in vue.datas["es"]) {
                   sortable.push([data, vue.datas["es"][data]]);
@@ -159,9 +163,9 @@ export default {
                   return b[1] - a[1];
                 });
 
-                vue.sports = sortable
+                vue.sports = sortable;
                 break;
-                case "IT":
+              case "IT":
                 var sortable = [];
                 for (var data in vue.datas["it"]) {
                   sortable.push([data, vue.datas["it"][data]]);
@@ -170,9 +174,9 @@ export default {
                   return b[1] - a[1];
                 });
 
-                vue.sports = sortable
+                vue.sports = sortable;
                 break;
-                case "UK":
+              case "UK":
                 var sortable = [];
                 for (var data in vue.datas["UK"]) {
                   sortable.push([data, vue.datas["UK"][data]]);
@@ -181,9 +185,9 @@ export default {
                   return b[1] - a[1];
                 });
 
-                vue.sports = sortable
+                vue.sports = sortable;
                 break;
-                case "DE":
+              case "DE":
                 var sortable = [];
                 for (var data in vue.datas["de"]) {
                   sortable.push([data, vue.datas["de"][data]]);
@@ -192,10 +196,10 @@ export default {
                   return b[1] - a[1];
                 });
 
-                vue.sports = sortable
+                vue.sports = sortable;
                 break;
-                default: 
-                vue.sports = []
+              default:
+                vue.sports = [];
                 break;
             }
 
@@ -211,7 +215,9 @@ export default {
             if (event.mapObject.title == lastCountry) {
               slider.classList.remove("slided");
               sliderContainer.classList.add("d-none");
-              document.getElementsByClassName("articles")[0].classList.add("d-none")
+              document
+                .getElementsByClassName("articles")[0]
+                .classList.add("d-none");
               map.selectedObject = false;
               map.showAsSelected = false;
               lastCountry = "";
@@ -221,32 +227,37 @@ export default {
 
             vue.country = event.mapObject.title;
             vue.countryId = event.mapObject.id;
-
           }
         }
       ]
     });
   },
   methods: {
-      handleBack (event) {
-          console.log(document.getElementsByClassName("articles")[0])
-        document.getElementsByClassName("articles")[0].classList.remove("d-none");
-        document.getElementsByClassName("table")[0].scrollIntoView({ behavior: 'smooth'});
-        this.selectedSport = event.toUpperCase()
-        switch (event) {
-            case "football":
-            this.shownArticles = this.articlesFoot[this.countryId.toLowerCase()]
-            break;
-            case "basketball":
-            this.shownArticles = this.articlesBasket[this.countryId.toLowerCase()]
-               console.log(this.shownArticles)
-            break;
-            case "tennis":
-            this.shownArticles = this.articlesTennis[this.countryId.toLowerCase()]
-               console.log(this.shownArticles)
-            break;
-        }
+    handleBack(event) {
+      console.log(document.getElementsByClassName("articles")[0]);
+      document.getElementsByClassName("articles")[0].classList.remove("d-none");
+      document
+        .getElementsByClassName("table")[0]
+        .scrollIntoView({ behavior: "smooth" });
+      this.selectedSport = event.toUpperCase();
+      switch (event) {
+        case "football":
+          this.shownArticles = this.articlesFoot[this.countryId.toLowerCase()];
+          break;
+        case "basketball":
+          this.shownArticles = this.articlesBasket[
+            this.countryId.toLowerCase()
+          ];
+          console.log(this.shownArticles);
+          break;
+        case "tennis":
+          this.shownArticles = this.articlesTennis[
+            this.countryId.toLowerCase()
+          ];
+          console.log(this.shownArticles);
+          break;
       }
+    }
   },
   beforeDestroy() {
     if (this.map) {
@@ -271,13 +282,13 @@ body {
 }
 
 .slider {
-    position: absolute;
-    top: 88px;
-    right: 0;
-    width: 0px;
-    height: 100%;
-    overflow: hidden;
-    background: #fff;
+  position: absolute;
+  top: 88px;
+  right: 0;
+  width: 0px;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
 
   transition: all 0.75s ease;
 }
