@@ -13,30 +13,13 @@
                     <div class="label-top"><span><b>TOP MOTS CLÉS</b></span></div>
                     <div class="row line"></div>
                     
-                    <div class="row element">
-                        <div class="col-md-1 gold square"><b>1.</b></div>
-                        <a class="col label-link" href="#/"><b>PSG</b></a>
-                    </div>
-
-                    <div class="row element">
-                        <div class="col-md-1 silver square"><b>2.</b></div>
-                        <a class="col label-link" href="#/"><b>Mercato</b></a>
-                    </div>
-
-                    <div class="row element">
-                        <div class="col-md-1 bronze square"><b>3.</b></div>
-                        <a class="col label-link" href="#/"><b>Football</b></a>
-                    </div>
-
-                    <div class="row element">
-                        <div class="col-md-1 blue square"><b>4.</b></div>
-                        <a class="col label-link" href="#/"><b>OM</b></a>
-                    </div>
-
-                    <div class="row element">
-                        <div class="col-md-1 blue square"><b>5.</b></div>
-                        <a class="col label-link" href="#/"><b>Ligue 1</b></a>
-                    </div>
+                     <div v-for="(value, key) in keywords" class="card d-flex flex-row text-center mb-2">
+      <div v-if="key == 0" class="top-number font-weight-bold bg-warning pt-3 pb-3">1</div>
+      <div v-else-if="key == 1" class="top-number font-weight-bold bg-secondary pt-3 pb-3">2</div>
+      <div v-else-if="key == 2" class="top-number font-weight-bold bg-danger pt-3 pb-3">3</div>
+      <div v-else class="top-number font-weight-bold bg-info pt-3 pb-3">{{ key + 1}}</div>
+      <div class="top-text text-dark w-100 pt-3 pb-3 pointer">{{value.ngram}}</div>
+    </div>
                     
                 </div>
 
@@ -50,7 +33,19 @@
 <script>
 export default {
   name: "trends",
-  components: {}
+  components: {},
+  data() {
+    return {
+        keywords: {},
+    }
+  },
+  mounted() {
+      axios.get("http://192.168.0.30:4000/ngrams/details/1")
+      . then(response => {
+         this.keywords = response.data.ngrams
+         console.log(response.data.ngrams)
+      })
+  }
 };
 </script>
 

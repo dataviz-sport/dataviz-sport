@@ -6,16 +6,32 @@
         <slider :country="country" :sports="sports" @interface="handleBack"></slider>
       </div>
     </div>
-
+<div class="articles d-none">
      <div class="label-trends mt-2">
         <h1 class="display-2 text-black">ARTICLES POUR {{ selectedSport }}</h1>
     </div>
 
-    <div v-for="article in shownArticles">
-        {{ article }}
+ <table class="table col-lg-10 offset-1">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Titre</th>
+          <th>Publication</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="article in shownArticles">
+          <td>{{ article.source.domain }}</td>
+          <td>
+            <a v-bind:href="article.url">{{ article.name }}</a>
+          </td>
+          <td>{{ article.date_first_seen.substr(0, 10) }}</td>
+          <td>{{ article.article_score }}</td>
+        </tr>
+      </tbody>
+    </table>
     </div>
-    <br>
-    <br>
   </div>
 </template>
 
@@ -24,6 +40,8 @@ import Slider from "./Slider";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
+import Vue from "vue";
+Vue.use(require("vue-moment"));
 
 export default {
   name: "HelloWorld",
@@ -193,6 +211,7 @@ export default {
             if (event.mapObject.title == lastCountry) {
               slider.classList.remove("slided");
               sliderContainer.classList.add("d-none");
+              document.getElementsByClassName("articles")[0].classList.add("d-none")
               map.selectedObject = false;
               map.showAsSelected = false;
               lastCountry = "";
@@ -202,6 +221,7 @@ export default {
 
             vue.country = event.mapObject.title;
             vue.countryId = event.mapObject.id;
+
           }
         }
       ]
@@ -209,6 +229,9 @@ export default {
   },
   methods: {
       handleBack (event) {
+          console.log(document.getElementsByClassName("articles")[0])
+        document.getElementsByClassName("articles")[0].classList.remove("d-none");
+        document.getElementsByClassName("table")[0].scrollIntoView({ behavior: 'smooth'});
         this.selectedSport = event.toUpperCase()
         switch (event) {
             case "football":

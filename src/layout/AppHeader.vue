@@ -1,6 +1,6 @@
 <template>
     <header class="header-global">
-        <base-nav class="navbar-main navbar-white" type="" effect="light" expand>
+        <base-nav class="navbar-main navbar-white border-bottom " type="" effect="light" expand>
             <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
                 <img src="img/brand/datavizsport-solo.png" alt="logo" style="width: 50px; height: 28px;">
             </router-link>
