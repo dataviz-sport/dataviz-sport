@@ -34,7 +34,7 @@
         <tr v-for="article in data">
           <td>{{ article.source.domain }}</td>
           <td>
-            <a v-bind:href="article.url">{{ article.name }}</a>
+            <a v-bind:href="article.url" target="_blank">{{ article.name }}</a>
           </td>
           <td>{{ article.date_first_seen.substr(0, 10) }}</td>
           <td>{{ article.article_score }}</td>
@@ -45,7 +45,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
