@@ -20,7 +20,7 @@
     "vue": "^2.6.10",
     "vue-flatpickr-component": "^8.1.1",
     "vue-lazyload": "^1.2.6",
-    "vue-moment": "^4.0.0",
+    "vue-moment": "^4.1.0",
     "vue-router": "^3.0.2",
     "vue2-transitions": "^0.2.3"
   },
